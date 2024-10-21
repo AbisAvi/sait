@@ -90,4 +90,4 @@ if __name__ == '__main__':
     app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
     app.run(debug=True, port = 1029)
 
-#rrrr
+#rrrrк
