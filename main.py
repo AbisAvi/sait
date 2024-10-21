@@ -13,17 +13,17 @@ users = []
 def generate_users(n: int):
     for i in range(n):
         age = randint(1, 100)
-        user = User(i, "test@example.com", "test", age, f"city{i}", "12345")
+        user = User(i, "test@example.com", age)
         users.append(user)
 
 
-def addUser(email, name, age, city, password):
+def addUser(email, name, age, city):
     if len(users) == 0:
         last_id = 0
     else:
         last_id = max(users, key=lambda x: x.id).id + 1
 
-    user = User(last_id, email, name, age, city, password)
+    user = User(last_id, email, age)
     users.append(user)
 
 
@@ -53,25 +53,12 @@ def signUp():
     form = SignUpForm()
 
     if form.validate_on_submit():
-        email = form.email.data
         name = form.name.data
         age = form.age.data
-        city = form.city.data
-        password = form.password.data
-        confirm_password = form.consfirm_password.data
 
-        if password != confirm_password:
-            return render_template(
-                "formTemplate.html",
-                form=form,
-                btn_name="Регистрация!",
-                error="Пароли не совпадают!"
-            )
-
-        addUser(email, name, age, city, password)
         return redirect("/users")
-
-    return render_template("formTemplate.html", form=form, btn_name="Регистрация!")
+    else:
+        return render_template("formTemplate.html", form=form,  btn_name="Регистрация!")
 
 
 @app.route("/users", methods=['GET', 'POST'])
@@ -101,4 +88,5 @@ def delUser(user_id: int):
 if __name__ == '__main__':
     generate_users(10)
     app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-    app.run(debug=True)
+    app.run(debug=True, port = 1029)
+
