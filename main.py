@@ -13,26 +13,21 @@ users = []
 def generate_users(n: int):
     for i in range(n):
         age = randint(1, 100)
-        user = User(i, "test@example.com", age)
+        user = User(i, "test@example.com")
         users.append(user)
 
 
-def addUser(email, name, age, city):
+def addUser(name):
     if len(users) == 0:
         last_id = 0
     else:
         last_id = max(users, key=lambda x: x.id).id + 1
 
-    user = User(last_id, email, age)
+    user = User(last_id, name)
     users.append(user)
 
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():
-    return render_template("index.html")
 
 
 @app.route("/gr_wtf", methods=['GET', 'POST'])
@@ -48,15 +43,14 @@ def gr_wtf():
     return render_template("gravitation_wtf.html", form=form)
 
 
-@app.route("/signUp", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def signUp():
     form = SignUpForm()
 
     if form.validate_on_submit():
         name = form.name.data
-        age = form.age.data
 
-        return redirect("/users")
+        return render_template("classes.html")
     else:
         return render_template("formTemplate.html", form=form,  btn_name="Регистрация!")
 
