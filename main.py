@@ -50,11 +50,29 @@ def signUp():
         name = form.name.data
         rassa = form.rassa.data
 
-        if rassa == "":
+        if rassa == "Э":
             return render_template("classes_elf.html", name=name)
 
-        if rassa == "":
+        elif rassa == "Д":
             return render_template("classes_dvorf.html", name=name)
+
+        elif rassa == "Пэ":
+            return render_template("classes_poluelf.html", name=name)
+
+        elif rassa == "Т":
+            return render_template("classes_tifling.html", name=name)
+
+        elif rassa == "Г":
+            return render_template("classes_gnom.html", name=name)
+
+        elif rassa == "П":
+            return render_template("classes_poluroslik.html", name=name)
+
+        elif rassa == "Др":
+            return render_template("classes_drakonorogden.html", name=name)
+
+        elif rassa == "Пр":
+            return render_template("classes_poluork.html", name=name)
 
         return render_template("classes.html", name=name)
     else:
