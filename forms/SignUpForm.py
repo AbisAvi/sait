@@ -9,4 +9,4 @@ from wtforms.validators import DataRequired
 class SignUpForm(FlaskForm):
     name = StringField('Имя', validators=[DataRequired()])
     gender = SelectField('Пол', choices=[("М", "Мужской"), ("Ж", "Женский")])
-    rassa = SelectField('расса', choices=[("Ч", "Человек"), ("Э", "Эльф")])
+    rassa = SelectField('расса', choices=[("Ч", "Человек"), ("Э", "Эльф"), ("Пэ", "Полуэльф"), ("Т", "Тифлинг"), ("Д", "Дварф"), ("Г", "Гном"), ("П", "Полурослик"), ("Пр", "Полуорк"), ("Др", "Драконорождённый")])

@@ -12,7 +12,6 @@ users = []
 
 def generate_users(n: int):
     for i in range(n):
-        age = randint(1, 100)
         user = User(i, "test@example.com")
         users.append(user)
 
@@ -49,8 +48,15 @@ def signUp():
 
     if form.validate_on_submit():
         name = form.name.data
+        rassa = form.rassa.data
 
-        return render_template("classes.html")
+        if rassa == "":
+            return render_template("classes_elf.html", name=name)
+
+        if rassa == "":
+            return render_template("classes_dvorf.html", name=name)
+
+        return render_template("classes.html", name=name)
     else:
         return render_template("formTemplate.html", form=form,  btn_name="Регистрация!")
 
